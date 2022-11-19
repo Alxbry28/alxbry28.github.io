@@ -1,13 +1,520 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alxbry28</title>
-</head>
-<body>
-    <h1>Alex Bryan Arellano</h1>
-    <h1>Alxbry28</h1>
+<!DOCTYPE HTML>
+<!--
+	Broadcast by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>I am Alex</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	
+		<link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
+		<link rel="icon" href="<?=base_url();?>images/3.jpg" type="image/jpg" sizes="16x16">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+		<script src='https://unpkg.com/sweetalert/dist/sweetalert.min.js'></script> 
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header">
+				<h1><a href="/">I am Alex</a></h1>
+				<a href="#menu">Menu</a>
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="/">Home</a></li>
+					<li><a href="#aboutme">About Me</a></li>
+					<li><a href="#myprojects">My Projects</a></li>
+					<li><a href="#contactme">Contact Me</a></li>
+					<!--
+					<li><a href="generic.html">Generic</a></li>
+					<li><a href="elements.html">Elements</a></li>
+					-->
+				</ul>
+			</nav>
+
+                
+            <section id="banner" data-video="images/banner">
+                <div class="inner">
+                    <header>
+                        <h1>Hello! I am Alex! :)</h1>
+                        <p><?=$descriptions['frontDescription'];?></p>
+                    </header>
+                    <div id="myButtons">
+                        <a href="#myprojects" class="button big alt scrolly icon fa-code">My Projects</a>
+                        <a href="contactme" class="button big alt scrolly icon fa-envelope">Contact Me</a>
+                        <a href="my-resume" target="_blank" class="button big alt scrolly icon fa-download">My Resume</a>
+                    </div>
+                    <div>
+                        <ul class="icons">
+                            <li><a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=alexbryanarellano2@gmail.com" target="_blank" class="icon fa-envelope"><span class="label">Twitter</span></a></li>
+                            <li><a href="https://www.facebook.com/I-am-Alex-112123413793491" target="_blank" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                            <li><a href="https://www.linkedin.com/in/alex-bryan-151850196/" target="_blank" class="icon fa-linkedin"><span class="label">Linked In</span></a></li>
+                            <li><a href="https://www.youtube.com/channel/UC84vYquLAy49_kyV09QC0eg" target="_blank" class="icon fa-youtube"><span class="label">Youtube Channel</span></a></li>
+                            <li><a href="https://github.com/Alxbry28" target="_blank" class="icon fa-github"><span class="label">Github</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </section>
+<?php 
+$imageSize = "";
+$lessThan2 = "360px";
+$greaterThan2 = "210px";
+?>
+    <!-- Main -->
+        <div id="main">
+            <section class="wrapper " id="aboutme">
+                <div class="inner">
+                    <header>
+                        <h2>About Me</h2>
+                        <p><?=$descriptions['aboutMeDescription'];?></p>
+                    </header>
+
+                    <!-- 3 Column Video Section -->
+                    <div class="flex flex-tabs">
+                            <ul class="tab-list">
+                                
+                                <li><a href="#" data-tab="tab-1" class="active">My Achievements</a></li>
+                                <li><a href="#" data-tab="tab-2">My Music Career</a></li>
+                                <li><a href="#" data-tab="tab-3">My Skills as a Developer</a></li>
+                            </ul>
+                            <div class="tabs">
+
+                            <?php
+                                if ($aboutCounts['Achievement'] <= 2) {
+                                    echo '<div class="tab tab-1 flex flex-2 active">';
+                                    $imageSize = $lessThan2;
+                                }
+                                else{
+                                    echo '<div class="tab tab-1 flex flex-3 active">';
+                                    $imageSize = $greaterThan2;
+                                }
+                                foreach($about as $portfolio){ 
+                                    if ($portfolio['category'] == "Achievement") {
+                                ?>
+                            <!-- Video Thumbnail -->
+                            <div class="video col">
+                                    <div class="image fit">
+                                    <a href="#"><img src="<?=base_url();?>uploads/aboutme/<?=$portfolio['image'];?>" alt="" /></a>
+                                        <div class="arrow">
+                                        <?php 
+                                        $mylinks = $portfolio['links'];
+                                        if (strstr($mylinks, 'https://' ) ) {
+                                          echo '<a href="'.$mylinks.'" target="_blank"><div class="icon fa-play"></div></a>';
+                                        } else {
+                                          echo "";
+                                        }
+                                        ?>
+                                        
+                                        </div>
+                                    </div>
+                                <div class="caption">
+                                        <h5><?=$portfolio['title'];?></h5>
+                                        <?=$portfolio['description'];?>
+                                </div>
+                        </div>
+                    <?php 
+                            }
+                        }
+                    ?>		
+                        </div>
+
+                        <?php 
+                            if ($aboutCounts['Music'] <= 2) {
+                                echo '<div class="tab tab-2 flex flex-2">';
+                                $imageSize = $lessThan2;
+                            }
+                            else{
+                                echo '<div class="tab tab-2 flex flex-3">';
+                                $imageSize = $greaterThan2;
+                            }
+                            foreach($about as $portfolio){ 
+                                if ($portfolio['category'] == "Music") {
+                            ?>
+                                        <!-- Video Thumbnail -->
+                            <div class="video col">
+                                <div class="image fit">
+                                    <img src="<?=base_url();?>uploads/aboutme/<?=$portfolio['image'];?>" height="<?=$imageSize;?>" alt="" />
+                                    <div class="arrow">
+                                    <?php 
+                                        $mylinks = $portfolio['links'];
+                                        if (strstr($mylinks, 'https://' ) ) {
+                                          echo '<a href="'.$mylinks.'" target="_blank"><div class="icon fa-play"></div></a>';
+                                        } else {
+                                          echo "";
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                                <div class="caption">
+                                    <h5><?=$portfolio['title'];?></h5>
+                                    <p><?=$portfolio['description'];?></p>
+                                </div>				
+                            </div>
+                                <?php 
+                                    }
+                                }
+                                ?>	
+                                    </div>
+
+                                <!-- Tab 3 -->
+                                    <div class="tab tab-3 flex flex-3">
+                                        <!-- Video Thumbnail -->
+                                            <div class="video col">
+                                                <div class="image fit">
+                                                    <div class="arrow">
+                                                        <div class="icon fa-play"></div>
+                                                    </div>
+                                                </div>
+                                            <div class="caption">
+                                                <h5>Back-End Development</h5>
+                                                <p><i class="devicon-java-plain"></i> Java</p>
+                                                <p><i class="devicon-php-plain"></i> Php</p>
+                                                <p><i class="devicon-codeigniter-plain-wordmark"></i> CodeIgniter</p>
+                                                <p><i class="devicon-wordpress-plain"></i> WordPress</p>
+                                                <!-- <p><i class="devicon-laravel-plain"></i> Laravel</p> -->
+                                                <p><i class="devicon-csharp-line"></i> C#</p>
+                                                <p><i class="fa fa-database"></i> SQL</p>
+                                                <p><img src="icons/firebase.png" height="25px" width="21px">Firebase</p>
+                                            </div>
+                                            </div>
+                                        <!-- Video Thumbnail -->
+                                            <div class="video col">
+                                                <div class="image fit">
+                                                    <div class="arrow">
+                                                        <div class="icon fa-play"></div>
+                                                    </div>
+                                                </div>
+                                            <div class="caption">
+                                                <h5>Front-End Development</h5>
+                                                <p><i class="devicon-html5-plain"></i> HTML5</p>
+                                                <p><i class="devicon-css3-plain"></i> CSS3</p>
+                                                <p><i class="devicon-bootstrap-plain"></i> Bootstrap</p>
+                                                <p><i class="devicon-javascript-plain"></i> JavaScript</p>
+                                                <p><i class="devicon-jquery-plain-wordmark"></i> JQuery</p>
+                                            </div>
+                                            
+                                            </div>
+                                        <!-- Video Thumbnail -->
+                                            <div class="video col">
+                                                <div class="image fit">
+                                                </div>
+                                                <div class="caption">
+                                                    <h5>Development Tools</h5>
+                                                    <p><i class="devicon-android-plain"></i> Android Studio</p>
+                                                    <p><i class="devicon-intellij-plain"></i> IntelliJ</p>
+                                                    <p><i class="devicon-visualstudio-plain"></i> VS Code</p>
+                                                    <p><i class="devicon-visualstudio-plain"></i> Visual Studio 2015</p>
+                                                    <p><i class="devicon-github-original"></i> Github</p>
+                                                </div>
+                                            </div>
+                                    </div>
+                            </div>
+                        </div>
+                </div>
+            </section>
+
+        <!-- Two -->
+            <section class="wrapper style2" id="myprojects">
+                <div class="inner">
+                    <header>
+                        <h2>My Projects</h2>
+                        <p><?=$descriptions['myprojectDescription'];?></p>
+                    </header>
+                    <!-- Tabbed Video Section -->
+                        <div class="flex flex-tabs">
+                            <ul class="tab-list">
+                                <li><a href="#" data-tab="tab-1" class="active">Mobile Development</a></li>
+                                <li><a href="#" data-tab="tab-2">Web Development</a></li>
+                                <li><a href="#" data-tab="tab-3">Desktop Development</a></li>
+                                <li><a href="#" data-tab="tab-4">Others</a></li>
+                            </ul>
+                            <div class="tabs">
+
+                                <!-- Tab 1 -->
+                                <?php
+                                        if ($projectCounts['Mobile'] <= 2) {
+                                            echo '<div class="tab tab-1 flex flex-2 active">';
+                                            $imageSize = $lessThan2;
+                                        }
+                                        else{
+                                            echo '<div class="tab tab-1 flex flex-3 active">';
+                                            $imageSize = $greaterThan2;
+                                        }
+                                        
+                                        foreach($projects as $portfolio){ 
+                                            if ($portfolio['category'] == "Mobile") {
+                                        ?>
+                                        <div class="video col">
+                                                <div class="image fit">
+                                                    <img src="<?=base_url();?>uploads/<?=$portfolio['image'];?>" height="<?=$imageSize;?>" alt="" />
+                                                    <div class="arrow">
+                                                        <div class="icon"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="caption">
+                                                    <h5><?=$portfolio['projectTitle'];?></h5>
+                                                    <p><?=$portfolio['projectDescription'];?></p>
+                                                    <div class="actions projects">
+                                                
+                                                    <?php 
+                                                          $myDemo = $portfolio['demoLink'];
+                                                          if (strstr($myDemo, 'https://' ) ) {
+                                                            echo '<a href="https://'.str_replace("https://","",$portfolio['demoLink']).'" class="button small icon fa-eye" style="margin-bottom: 5px;" target ="_blank"></i>Demo</a>';
+                                                          } else {
+                                                            echo "";
+                                                          }
+                                                      
+                                                          $myCode = $portfolio['githubLink'];
+                                                          if (strstr($myCode, 'https://' ) ) {
+                                                            echo '<a href="https://'.str_replace("https://","",$portfolio['githubLink']).'"  target ="_blank" class="button small icon fa-code">Code</a>';
+                                                          } else {
+                                                            echo "";
+                                                          }
+                                                      ?>
+                                                    </div>
+                                                </div>
+                                                <!-- <a href="generic.html" class="link"><span>Click Me</span></a>-->
+                                            </div>
+                                            <?php 
+                                            }
+                                        }
+                                        ?>	
+                                    </div>
+
+                                <!-- Tab 2 -->
+                                <?php
+                                        if ($projectCounts['Web'] <= 2) {
+                                            echo '<div class="tab tab-2 flex flex-2">';
+                                            $imageSize = $lessThan2;
+                                        }
+                                        else{
+                                            echo '<div class="tab tab-2 flex flex-3">';
+                                            $imageSize = $greaterThan2;
+                                        }
+                                        
+                                        foreach($projects as $portfolio){ 
+                                            if ($portfolio['category'] == "Web") {
+                                        ?>
+                                        <div class="video col">
+                                                <div class="image fit">
+                                                    <img src="<?=base_url();?>uploads/<?=$portfolio['image'];?>" height="<?=$imageSize;?>"  alt="" />
+                                                    <div class="arrow">
+                                                        <div class="icon"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="caption">
+                                                    <h5><?=$portfolio['projectTitle'];?></h5>
+                                                    <p><?=$portfolio['projectDescription'];?></p>
+                                                    <div class="actions projects">
+                                                
+                                                    <?php 
+                                                          $myDemo = $portfolio['demoLink'];
+                                                          if (strstr($myDemo, 'https://' ) ) {
+                                                            echo '<a href="https://'.str_replace("https://","",$portfolio['demoLink']).'" class="button small icon fa-eye" style="margin-bottom: 5px;" target ="_blank"></i>Demo</a>';
+                                                          } else {
+                                                            echo "";
+                                                          }
+                                                      
+                                                          $myCode = $portfolio['githubLink'];
+                                                          if (strstr($myCode, 'https://' ) ) {
+                                                            echo '<a href="https://'.str_replace("https://","",$portfolio['githubLink']).'"  target ="_blank" class="button small icon fa-code">Code</a>';
+                                                          } else {
+                                                            echo "";
+                                                          }
+
+                                                      ?>
+                                                    </div>
+                    
+                                                </div>
+                                                <!-- <a href="generic.html" class="link"><span>Click Me</span></a>-->
+                                            </div>
+                                            <?php 
+                                            }
+                                        }
+                                        ?>	
+                                    </div>
+
+                            <!-- Tab 3-->
+                            <!-- Video Thumbnail -->
+                            <?php
+                                        if ($projectCounts['Desktop'] <= 2) {
+                                            echo '<div class="tab tab-3 flex flex-2">';
+                                            $imageSize = $lessThan2;
+                                        }
+                                        else{
+                                            echo '<div class="tab tab-3 flex flex-3">';
+                                            $imageSize = $greaterThan2;
+                                        }
+                                        
+                                        foreach($projects as $portfolio){ 
+                                            if ($portfolio['category'] == "Desktop") {
+                                        ?>
+                                        <div class="video col">
+                                                <div class="image fit">
+                                                    <img src="<?=base_url();?>uploads/<?=$portfolio['image'];?>" height="<?=$imageSize;?>"  alt="" />
+                                                    <div class="arrow">
+                                                        <div class="icon"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="caption">
+                                                    <h5><?=$portfolio['projectTitle'];?></h5>
+                                                    <?=$portfolio['projectDescription'];?>
+                                                    <div class="actions projects">
+                                                
+                                                    <?php 
+                                                          $myDemo = $portfolio['demoLink'];
+                                                          if (strstr($myDemo, 'https://' ) ) {
+                                                            echo '<a href="https://'.str_replace("https://","",$portfolio['demoLink']).'" class="button small icon fa-eye" style="margin-bottom: 5px;" target ="_blank"></i>Demo</a>';
+                                                          } else {
+                                                            echo "";
+                                                          }
+                                                      
+                                                          $myCode = $portfolio['githubLink'];
+                                                          if (strstr($myCode, 'https://' ) ) {
+                                                            echo '<a href="https://'.str_replace("https://","",$portfolio['githubLink']).'"  target ="_blank" class="button small icon fa-code">Code</a>';
+                                                          } else {
+                                                            echo "";
+                                                          }
+
+                                                      ?>
+                                                    </div>
+                    
+                                                </div>
+                                                <!-- <a href="generic.html" class="link"><span>Click Me</span></a>-->
+                                            </div>
+                                            <?php 
+                                            }
+                                        }
+                                        ?>	
+                                    </div>
+
+                                        <!-- Tab 4-->
+                                        <!-- Video Thumbnail -->
+                                        <?php
+                                        
+                                        if ($projectCounts['Others'] <= 2) {
+                                            $imageSize = $lessThan2;
+                                            echo '<div class="tab tab-4 flex flex-2">';
+                                        }
+                                        else{
+                                            $imageSize = $greaterThan2;
+                                            echo '<div class="tab tab-4 flex flex-3">';
+                                        }
+                                        
+                                        foreach($projects as $portfolio){ 
+                                            if ($portfolio['category'] == "Others") {
+                                        ?>
+                                        <div class="video col">
+                                                <div class="image fit">
+                                                <img src="<?=base_url();?>uploads/<?=$portfolio['image'];?>" height="<?= $imageSize;?>" alt="" />
+                                                    <div class="arrow">
+                                                        <div class="icon"></div>
+                                                    </div>
+                                                </div>
+                                                <div class="caption">
+                                                <h5><?=$portfolio['projectTitle'];?></h5>
+                                                    <p><?=$portfolio['projectDescription'];?></p>
+                                                    <div class="actions projects">
+                                                
+                                                    <?php 
+                                                         $myDemo = $portfolio['demoLink'];
+                                                         if (strstr($myDemo, 'https://' ) ) {
+                                                           echo '<a href="https://'.str_replace("https://","",$portfolio['demoLink']).'" class="button small icon fa-eye" style="margin-bottom: 5px;" target ="_blank"></i>Demo</a>';
+                                                         } else {
+                                                           echo "";
+                                                         }
+
+                                                         $myCode = $portfolio['githubLink'];
+                                                         if (strstr($myCode, 'https://' ) ) {
+                                                           echo '<a href="https://'.str_replace("https://","",$portfolio['githubLink']).'"  target ="_blank" class="button small icon fa-code">Code</a>';
+                                                         } else {
+                                                           echo "";
+                                                         }
+                                                      ?>
+                                                    </div>
+                        
+                                                </div>
+                                                <!-- <a href="generic.html" class="link"><span>Click Me</span></a>-->
+                                            </div>
+                                            <?php 
+                                            }
+                                        }
+                                        ?>	
+                                    </div>
+                            </div>
+                        </div>
+                </div>
+</section>
+
+        
+
+
+<!-- Footer -->
+<footer id="footer">
+            <div class="inner">
+            <!--
+                <div class="flex flex-3">
+                    <div class="col">
+                        <h3>Vestibullum</h3>
+                        <ul class="alt">
+                            <li><a href="#">Nascetur nunc varius commodo.</a></li>
+                            <li><a href="#">Vis id faucibus montes tempor</a></li>
+                            <li><a href="#">Massa amet lobortis vel.</a></li>
+                            <li><a href="#">Nascetur nunc varius commodo.</a></li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <h3>Lobortis</h3>
+                        <ul class="alt">
+                            <li><a href="#">Nascetur nunc varius commodo.</a></li>
+                            <li><a href="#">Vis id faucibus montes tempor</a></li>
+                            <li><a href="#">Massa amet lobortis vel.</a></li>
+                            <li><a href="#">Nascetur nunc varius commodo.</a></li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <h3>Accumsan</h3>
+                        <ul class="alt">
+                            <li><a href="#">Nascetur nunc varius commodo.</a></li>
+                            <li><a href="#">Vis id faucibus montes tempor</a></li>
+                            <li><a href="#">Massa amet lobortis vel.</a></li>
+                            <li><a href="#">Nascetur nunc varius commodo.</a></li>
+                        </ul>
+                    </div>
+                </div>
+                -->
+            </div>
+            <div class="copyright">
+                <ul class="icons">
+                    <li><a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=alexbryanarellano2@gmail.com" target="_blank" class="icon fa-envelope"><span class="label">Twitter</span></a></li>
+                    <li><a href="https://www.facebook.com/I-am-Alex-112123413793491" target="_blank" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+                    <li><a href="https://www.linkedin.com/in/alex-bryan-151850196/" target="_blank" class="icon fa-linkedin"><span class="label">Linked In</span></a></li>
+                    <li><a href="https://www.youtube.com/channel/UC84vYquLAy49_kyV09QC0eg" target="_blank" class="icon fa-youtube"><span class="label">Youtube Channel</span></a></li>
+                        <li><a href="https://github.com/Alxbry28" target="_blank" class="icon fa-github"><span class="label">Github</span></a></li>
+                </ul>
+                &copy; 2022 - I Am Alex. Design: <a href="/">TEMPLATED</a>.</a>.
+            </div>
+        </footer>
+
+    <!-- Scripts -->
+        <script src="/assets/js/jquery.min.js"></script>
+        <script src="/assets/js/jquery.scrolly.min.js"></script>
+        <script src="/assets/js/skel.min.js"></script>
+        <script src="/assets/js/util.js"></script>
+        <script src="/assets/js/main.js"></script>
+        <script src="/assets/js/Validation.js"></script>
+
+            <!-- ManyChat  -->
+<!-- <script src="//widget.manychat.com/171939.js" async="async"></script> -->
+
 </body>
 </html>
